@@ -1,13 +1,51 @@
 <template>
-  <h1>Hello world</h1>
+  <main class="d-flex flex-column justify-content-center align-items-center bg-dark">
+    <div class="container">
+      <div class="row justify-content-center mt-3">
+        <div class="col col-6">
+          <div class="text-center">
+            <div v-if="!winMessage">
+              <h1 class="text-info" v-if="isCross">
+                Cross True
+              </h1>
+              <h1 class="text-info" v-if="!isCross">
+                Circle True
+              </h1>
+            </div>
+            <div v-else>
+              <h1 class="text-warning">
+                {{ winMessage.toUpperCase() }}
+              </h1>
+            </div>
+          </div>
+          <div class="grid">
+            <div 
+          v-for="(item, i) in itemArray"
+          :key="i"
+          @click="handleClick(i)"
+          class="card card-body box justify-content-center align-items-center bg-light">
+          <Grid :iconname="item"></Grid>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class = "d-grid gap-2 col-6 mx-auto">
+      <button 
+      @click="reloadGame"
+      class="btn btn-info btn-lg mt-5 pl-5 pr-5">
+        Reset the game
+      </button>
+    </div>
+    </div>
+  </main>
 </template>
 
 <script>
-import Icon from './components/grid.vue'
+import Grid from './components/grid.vue'
 
 export default ({
   name: 'App',
-  components: { Icon },
+  components: { Grid },
   data () {
     return {
       winMessage: "",
@@ -25,7 +63,7 @@ export default ({
 
   methods: {
     showDialog() {
-      document.alert(this.winMessage)
+      alert(this.winMessage)
     },
     handleClick (itemNumber){
       if(this.winMessage) {
@@ -36,7 +74,7 @@ export default ({
         this.itemArray[itemNumber] = this.isCross ? "cross" : "circle"
         this.isCross = !this.isCross
       }else{
-        document.alert("Already Filled!")
+        alert("Already Filled!")
       }
 
       this.checkWinner()
@@ -103,5 +141,16 @@ export default ({
 </script>
 
 <style>
+main {
+  height: 100vh;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+}
 
+.box {
+  height: 150px;
+}
 </style>

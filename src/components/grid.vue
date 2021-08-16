@@ -1,14 +1,15 @@
 <template>
     <div>
-        <i class="fa fa-circle fa-4x zoomIn text-primary" 
-        v-if="iconname === circle"
+        <i class="fa fa-circle fa-4x zoomIn text-primary"
+        v-if="iconname === 'circle'"
         ></i>
-        <i class="fa fa-times fa-4x zoomIn text-warning" 
-        v-else-if="iconname === cross"
+        <i class="fa fa-times fa-4x zoomIn text-info"
+        v-else-if="iconname === 'cross'"
         ></i>
-        <img src="../assets/logo.png" alt="" class="img-fluid zoomIn" 
+        <img src="../assets/logo.png" alt="" 
+        class="img-fluid zoomIn"
         v-else-if="iconname === 'empty'"
-        />
+         />
     </div>
 </template>
 
